@@ -60,6 +60,10 @@ namespace tap_lam_form
 
         private void formC_Load(object sender, EventArgs e)
         {
+            for(int i = 0;i< imlDSHA.Images.Count; i++)
+            {
+                cbbChonHinh.Items.Add("Hình: " + i);
+            }
 
         }
 
@@ -132,6 +136,120 @@ namespace tap_lam_form
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClickOK_Click(object sender, EventArgs e)
+        {
+            timer1_Tick.Start();
+        }
+
+        private void timer1_Tick_Tick(object sender, EventArgs e)
+        {
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                timer1_Tick.Stop();
+                MessageBox.Show("Đã chạy xong");
+                progressBar1.Value = progressBar1.Minimum;
+                lblTienDo.Text = "0%";
+            }
+            else
+            {
+                progressBar1.PerformStep();
+                lblTienDo.Text=progressBar1.Value.ToString();
+            }
+        }
+
+        private void lblTienDo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbbChonHinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pbHinhanh.Image = imlDSHA.Images[cbbChonHinh.SelectedIndex];
+        }
+
+        private void btnMSSV_Click(object sender, EventArgs e)
+        {
+            ListViewItem lv=new ListViewItem(txtMSSV.Text);
+            //Thêm các ô tiếp
+            lv.SubItems.Add(txtHoTen.Text);
+            lv.SubItems.Add(txtLop.Text);
+            lv.SubItems.Add(txtGoiTinh.Text);
+            LvDanhSach.Items.Add(lv);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            //Xem danh sách có thành viên để xóa không
+            if(LvDanhSach.SelectedItems.Count > 0)
+            {
+                LvDanhSach.Items.Remove(LvDanhSach.SelectedItems[0]);
+                MessageBox.Show("Đã xóa một dòng");
+            }
+            else
+            {
+                MessageBox.Show("Không có ai trong danh sách","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (LvDanhSach.SelectedItems.Count > 0)
+            {
+                ListViewItem lv = LvDanhSach.SelectedItems[0];
+                lv.SubItems[0].Text = txtMSSV.Text;
+                lv.SubItems[1].Text = txtHoTen.Text;
+                lv.SubItems[2].Text = txtLop.Text;
+                lv.SubItems[3].Text = txtGoiTinh.Text;
+            }
+            else
+            {
+                MessageBox.Show("Không có ai trong danh sách", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LvDanhSach_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LvDanhSach.SelectedItems.Count > 0)
+            {
+                ListViewItem lv = LvDanhSach.SelectedItems[0];
+                txtMSSV.Text = lv.SubItems[0].Text;
+                txtHoTen.Text = lv.SubItems[1].Text;
+                txtLop.Text= lv.SubItems[2].Text;   
+                txtGoiTinh.Text= lv.SubItems[3].Text;
+            }
+            
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            
+        }
+
+        private void pbHinhanh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
         {
 
         }

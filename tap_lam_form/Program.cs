@@ -17,6 +17,10 @@ namespace tap_lam_form
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new formC());
+            if(MessageBox.Show("Lỗi chương trình", "error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
     }
 }
