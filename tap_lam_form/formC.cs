@@ -241,7 +241,7 @@ namespace tap_lam_form
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            
+            Console.WriteLine("helllo");
         }
 
         private void pbHinhanh_Click(object sender, EventArgs e)
